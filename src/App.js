@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { Addproject } from "./Components/Addproject";
+import TodoView from "./components/TodoView";
 
 class App extends Component {
   render() {
     return (
       <div>
-        <Addproject />
+        <TodoView />
       </div>
     );
   }

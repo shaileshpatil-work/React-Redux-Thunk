@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Showproject } from "./Showproject";
+import ListView from "./ListView";
 
-export class Addproject extends Component {
+class TodoView extends Component {
   constructor() {
     super();
     this.state = {
@@ -9,10 +9,10 @@ export class Addproject extends Component {
     };
     this.inpVal = React.createRef();
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.delete = this.delete.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
-  handleSubmit(e) {
+  handleSubmit = e => {
     e.preventDefault();
     if (this.inpVal.current.value !== "") {
       if (this.state.data.includes(this.inpVal.current.value)) {
@@ -24,17 +24,18 @@ export class Addproject extends Component {
         this.inpVal.current.value = "";
       }
     }
-  }
+  };
 
-  delete(items) {
+  handleDelete = items => {
     this.setState({
       data: this.state.data.filter(item => item !== items)
     });
-  }
+  };
+
   render() {
     return (
       <div>
-        <Showproject list={this.state.data} del={this.delete} />
+        <ListView list={this.state.data} delete={this.handleDelete} />
         <form onSubmit={this.handleSubmit}>
           <input type="text" ref={this.inpVal} />
           <input type="submit" />
@@ -43,3 +44,5 @@ export class Addproject extends Component {
     );
   }
 }
+
+export default TodoView;
